@@ -3,15 +3,13 @@ import 'data/database/database_helper.dart';
 import 'data/models/employee_model.dart';
 import 'data/models/product_model.dart';
 import 'data/models/order_model.dart';
+import 'presentation/screens/table_selection_screen.dart';
 
 void main() async {
-  // Εξασφαλίζουμε ότι οι υπηρεσίες του Flutter έχουν αρχικοποιηθεί 
-  // πριν τρέξουμε κώδικα ασύγχρονης βάσης δεδομένων
   WidgetsFlutterBinding.ensureInitialized();
 
   print('--- ΕΚΚΙΝΗΣΗ TEST DRIVE ΒΑΣΗΣ ΔΕΔΟΜΕΝΩΝ ---');
 
-  // Παίρνουμε τον διαχειριστή της βάσης
   final dbHelper = DatabaseHelper.instance;
 
   // 1. ΔΟΚΙΜΗ: ΕΙΣΑΓΩΓΗ ΕΡΓΑΖΟΜΕΝΟΥ
@@ -51,15 +49,8 @@ void main() async {
 
   print('-----------------------------------------');
 
-  // Εκκίνηση μιας κενής εφαρμογής απλά για να μην παραπονεθεί το Flutter
   runApp(const MaterialApp(
-    home: Scaffold(
-      body: Center(
-        child: Text(
-          'Database Test Successful!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    ),
+    debugShowCheckedModeBanner: false,
+    home: TableSelectionScreen(),
   ));
 }
