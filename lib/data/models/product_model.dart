@@ -1,19 +1,17 @@
 class ProductModel {
-  // 1. Ιδιότητες του Προϊόντος
   final int id;
   final String name;
-  final double price; // Χρησιμοποιούμε double για δεκαδικούς αριθμούς (π.χ. 2.50)
+  final double price;
   final String category;
 
-  // 2. Constructor
   ProductModel({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.category,
+    required this.id, 
+    required this.name, 
+    required this.price, 
+    required this.category
   });
 
-  // 3. Μετατροπή από Αντικείμενο Dart σε Map (για αποθήκευση στη SQLite)
+  // Μετατρέπει το αντικείμενο σε Map για τη βάση
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -23,15 +21,13 @@ class ProductModel {
     };
   }
 
-  // 4. Δημιουργία Αντικειμένου Dart από Map (όταν διαβάζουμε από τη βάση)
+  // Δημιουργεί αντικείμενο από Map της βάσης
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      // Επειδή η SQLite μπορεί να επιστρέψει την τιμή ως int ή double, 
-      // κάνουμε μια ασφαλή μετατροπή σε double χρησιμοποιώντας το .toDouble()
-      price: (map['price'] as num).toDouble(),
-      category: map['category'] as String,
+      id: map['id'],
+      name: map['name'],
+      price: map['price'],
+      category: map['category'],
     );
   }
 }
